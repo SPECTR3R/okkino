@@ -53,6 +53,7 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
     "server-only": "^0.0.1",
+    "sharp": "^0.31.3",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -122,4 +123,3 @@
     "schema": "libs/api/data-access-db/src/lib/schema.prisma"
   }
 }
-
