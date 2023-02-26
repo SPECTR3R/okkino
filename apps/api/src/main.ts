@@ -19,7 +19,7 @@ async function bootstrap() {
   await app.register(helmet, { contentSecurityPolicy: isProd })
   app.enableCors()
 
-  await app.listen(api.port)
+  await app.listen(api.port, isProd ? '0.0.0.0' : undefined)
   Logger.log(`🚀 Application playground is running on: http://localhost:${api.port}/graphiql`)
 }
 
