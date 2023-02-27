@@ -33,8 +33,9 @@ export function middleware(request: NextRequest) {
       '/logo.svg'
       // Your other files in `public`
     ].includes(pathname)
-  )
+  ) {
     return
+  }
 
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
