@@ -24,9 +24,7 @@ export default async function Page() {
               <Image
                 src={`${storage.url}/${mainImage.imagePath}`}
                 alt={mainImage.title}
-                className={
-                  'hover:transition-{opacity} duration-300 hover:opacity-100 lg:hover:opacity-0'
-                }
+                className="hover:transition-{opacity} duration-300 hover:opacity-100 lg:hover:opacity-0"
                 placeholder="blur"
                 blurDataURL={rgbToDataUrl(r, g, b)}
                 title={mainImage.title}

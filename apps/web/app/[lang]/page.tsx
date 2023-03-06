@@ -28,7 +28,7 @@ export default async function Page() {
               alt={block.image.title}
               fill
               className={
-                'hover:transition-{scale} h-full object-cover duration-1000 hover:scale-105'
+                'hover:transition-{scale} h-full object-cover duration-1000 hover:scale-105 '
               }
               placeholder="blur"
               blurDataURL={rgbToDataUrl(r, g, b)}
