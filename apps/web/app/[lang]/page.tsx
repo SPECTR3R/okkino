@@ -16,18 +16,23 @@ export default async function Page() {
           <Link
             href={block.navigationPath}
             key={block.id}
-            className="flex h-[calc(50vh-5.5rem)] min-h-[232px] items-center justify-center gap-4 overflow-hidden sm:h-[auto] md:h-[calc(50vh-7.5rem)] lg:h-[calc(100vh-18rem)]"
+            className="
+             relative block flex
+             h-[calc(50vh-5.5rem)] min-h-[232px]
+             items-center justify-center gap-4 overflow-hidden
+             md:h-[calc(50vh-7.5rem)] lg:h-[calc(100vh-18rem)]
+             "
           >
             <Image
               src={`${storage.url}/${block.image.imagePath}`}
               alt={block.image.title}
-              height={774}
-              width={774}
+              fill
               className={
                 'hover:transition-{scale} h-full object-cover duration-1000 hover:scale-105'
               }
               placeholder="blur"
               blurDataURL={rgbToDataUrl(r, g, b)}
+              priority
               title={block.image.title}
             ></Image>
           </Link>

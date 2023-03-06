@@ -51,16 +51,6 @@ async function main() {
   )
 
   await Promise.all(
-    PRODUCT_COVER_IMAGES.map((image) => {
-      return prisma.image.upsert({
-        where: { id: image.id },
-        update: image,
-        create: image
-      })
-    })
-  )
-
-  await Promise.all(
     PRODUCT_DATA.map((product) => {
       return prisma.product.upsert({
         where: { id: product.id },
@@ -69,6 +59,29 @@ async function main() {
       })
     })
   )
+
+  for (const product of PRODUCTS) {
+    for(const image of PRODUCT_COVER_IMAGES){
+      await prisma.image.upsert({
+        where: { id: product + image.id },
+        create: {
+          ...image,
+          id: product + image.id,
+          product: {
+            connect: { id: product }
+          },
+        },
+        update: {
+          ...image,
+          id: undefined,
+          product: {
+            connect: { id: product }
+          },
+        }
+      })
+    }
+
+  }
 
   for (const product of PRODUCTS) {
     await prisma.rgbColor.upsert({

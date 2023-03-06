@@ -16,7 +16,7 @@ export type GetHomeImages = { __typename?: 'Query', homeBlocks: Array<{ __typena
 export type GetProductsVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetProducts = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, coverImage: { __typename?: 'Image', imagePath: string, title?: string | null, rgbBackground: { __typename?: 'RgbColor', r: number, g: number, b: number } }, availableColors?: Array<{ __typename?: 'RgbColor', r: number, g: number, b: number }> | null }> };
+export type GetProducts = { __typename?: 'Query', products: Array<{ __typename?: 'Product', name: string, price: number, discountPrice?: number | null, images?: Array<{ __typename?: 'Image', title?: string | null, imagePath: string, rgbBackground: { __typename?: 'RgbColor', r: number, g: number, b: number } }> | null, availableColors?: Array<{ __typename?: 'RgbColor', r: number, g: number, b: number }> | null }> };
 
 
 export const GetUsersDocument = /*#__PURE__*/ gql`
@@ -48,10 +48,10 @@ export const GetHomeImagesDocument = /*#__PURE__*/ gql`
 export const GetProductsDocument = /*#__PURE__*/ gql`
     query GetProducts {
   products {
-    id
     name
-    coverImage {
-      imagePath
+    price
+    discountPrice
+    images {
       title
       imagePath
       rgbBackground {

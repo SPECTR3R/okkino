@@ -23,7 +23,6 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
     "discountPrice" INTEGER,
-    "coverImageId" TEXT NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -60,14 +59,8 @@ CREATE UNIQUE INDEX "HomeBlock_imageId_key" ON "HomeBlock"("imageId");
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_name_key" ON "Product"("name");
 
--- CreateIndex
-CREATE UNIQUE INDEX "Product_coverImageId_key" ON "Product"("coverImageId");
-
 -- AddForeignKey
 ALTER TABLE "HomeBlock" ADD CONSTRAINT "HomeBlock_imageId_fkey" FOREIGN KEY ("imageId") REFERENCES "Image"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_coverImageId_fkey" FOREIGN KEY ("coverImageId") REFERENCES "Image"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Image" ADD CONSTRAINT "Image_rgbBackgroundId_fkey" FOREIGN KEY ("rgbBackgroundId") REFERENCES "RgbColor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

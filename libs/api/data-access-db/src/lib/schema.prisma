@@ -75,11 +75,8 @@ model Product {
   /// @Validator.@Max(100_000)
   discountPrice Int?
 
-  coverImage   Image  @relation(name: "ProductCoverImage", fields: [coverImageId], references: [id])
-  coverImageId String @unique
-
-  additionalImages Image[]    @relation("ProductAdditionalImages")
-  availableColors  RgbColor[]
+  images          Image[]
+  availableColors RgbColor[]
 }
 
 model Image {
@@ -104,11 +101,9 @@ model Image {
   homeBlock HomeBlock?
 
   /// @HideField()
-  ProductCoverImage       Product? @relation(name: "ProductCoverImage")
+  product   Product? @relation(fields: [productId], references: [id])
   /// @HideField()
-  ProductAdditionalImages Product? @relation(name: "ProductAdditionalImages", fields: [productId], references: [id])
-  /// @HideField()
-  productId               String?
+  productId String?
 }
 
 model RgbColor {
@@ -135,10 +130,8 @@ model RgbColor {
   //----Relations----//
 
   /// @HideField()
-  image Image[]
-
-  /// @HideField()
   product   Product? @relation(fields: [productId], references: [id])
   /// @HideField()
   productId String?
+  Image     Image[]
 }

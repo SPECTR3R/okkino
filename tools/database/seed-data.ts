@@ -79,12 +79,7 @@ export const PRODUCT_DATA: ProductCreateInput[] = PRODUCTS.map((product, index) 
     name: product,
     price: 100 + index * 100,
     discountPrice: 100 * index,
-    coverImage: {
-      connect: {
-        id: product
-      }
-    },
-    additionalImages: {},
+    images: {},
     availableColors: {}
   }
 })

@@ -12,13 +12,12 @@ import { Prisma } from '@prisma/client'
 export class ProductService {
   constructor(private readonly prisma: PrismaService) {}
   private static readonly INCLUDE_NESTED: Prisma.ProductInclude = {
-    coverImage: {
+    images: {
       include: {
         rgbBackground: true
       }
     },
-    availableColors: true,
-    additionalImages: true
+    availableColors: true
   }
 
   create(createOneProductArgs: CreateOneProductArgs) {

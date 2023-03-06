@@ -31,8 +31,7 @@ export enum ProductScalarFieldEnum {
     id = "id",
     name = "name",
     price = "price",
-    discountPrice = "discountPrice",
-    coverImageId = "coverImageId"
+    discountPrice = "discountPrice"
 }
 
 export enum TransactionIsolationLevel {
@@ -890,16 +889,16 @@ export class ImageCountOrderByAggregateInput {
 }
 
 @InputType()
-export class ImageCreateManyProductAdditionalImagesInputEnvelope {
-    @Field(() => [ImageCreateManyProductAdditionalImagesInput], {nullable:false})
-    @Type(() => ImageCreateManyProductAdditionalImagesInput)
-    data!: Array<ImageCreateManyProductAdditionalImagesInput>;
+export class ImageCreateManyProductInputEnvelope {
+    @Field(() => [ImageCreateManyProductInput], {nullable:false})
+    @Type(() => ImageCreateManyProductInput)
+    data!: Array<ImageCreateManyProductInput>;
     @Field(() => Boolean, {nullable:true})
     skipDuplicates?: boolean;
 }
 
 @InputType()
-export class ImageCreateManyProductAdditionalImagesInput {
+export class ImageCreateManyProductInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -964,16 +963,16 @@ export class ImageCreateManyInput {
 }
 
 @InputType()
-export class ImageCreateNestedManyWithoutProductAdditionalImagesInput {
-    @Field(() => [ImageCreateWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create?: Array<ImageCreateWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageCreateOrConnectWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductAdditionalImagesInput)
-    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>;
-    @Field(() => ImageCreateManyProductAdditionalImagesInputEnvelope, {nullable:true})
-    @Type(() => ImageCreateManyProductAdditionalImagesInputEnvelope)
-    createMany?: InstanceType<typeof ImageCreateManyProductAdditionalImagesInputEnvelope>;
+export class ImageCreateNestedManyWithoutProductInput {
+    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateWithoutProductInput)
+    create?: Array<ImageCreateWithoutProductInput>;
+    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ImageCreateManyProductInputEnvelope)
+    createMany?: InstanceType<typeof ImageCreateManyProductInputEnvelope>;
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     connect?: Array<ImageWhereUniqueInput>;
@@ -1009,19 +1008,6 @@ export class ImageCreateNestedOneWithoutHomeBlockInput {
 }
 
 @InputType()
-export class ImageCreateNestedOneWithoutProductCoverImageInput {
-    @Field(() => ImageCreateWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageCreateWithoutProductCoverImageInput)
-    create?: InstanceType<typeof ImageCreateWithoutProductCoverImageInput>;
-    @Field(() => ImageCreateOrConnectWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ImageCreateOrConnectWithoutProductCoverImageInput>;
-    @Field(() => ImageWhereUniqueInput, {nullable:true})
-    @Type(() => ImageWhereUniqueInput)
-    connect?: InstanceType<typeof ImageWhereUniqueInput>;
-}
-
-@InputType()
 export class ImageCreateOrConnectWithoutHomeBlockInput {
     @Field(() => ImageWhereUniqueInput, {nullable:false})
     @Type(() => ImageWhereUniqueInput)
@@ -1032,23 +1018,13 @@ export class ImageCreateOrConnectWithoutHomeBlockInput {
 }
 
 @InputType()
-export class ImageCreateOrConnectWithoutProductAdditionalImagesInput {
+export class ImageCreateOrConnectWithoutProductInput {
     @Field(() => ImageWhereUniqueInput, {nullable:false})
     @Type(() => ImageWhereUniqueInput)
     where!: InstanceType<typeof ImageWhereUniqueInput>;
-    @Field(() => ImageCreateWithoutProductAdditionalImagesInput, {nullable:false})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create!: InstanceType<typeof ImageCreateWithoutProductAdditionalImagesInput>;
-}
-
-@InputType()
-export class ImageCreateOrConnectWithoutProductCoverImageInput {
-    @Field(() => ImageWhereUniqueInput, {nullable:false})
-    @Type(() => ImageWhereUniqueInput)
-    where!: InstanceType<typeof ImageWhereUniqueInput>;
-    @Field(() => ImageCreateWithoutProductCoverImageInput, {nullable:false})
-    @Type(() => ImageCreateWithoutProductCoverImageInput)
-    create!: InstanceType<typeof ImageCreateWithoutProductCoverImageInput>;
+    @Field(() => ImageCreateWithoutProductInput, {nullable:false})
+    @Type(() => ImageCreateWithoutProductInput)
+    create!: InstanceType<typeof ImageCreateWithoutProductInput>;
 }
 
 @InputType()
@@ -1077,14 +1053,12 @@ export class ImageCreateWithoutHomeBlockInput {
     imagePath!: string;
     @Field(() => RgbColorCreateNestedOneWithoutImageInput, {nullable:false})
     rgbBackground!: InstanceType<typeof RgbColorCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductCreateNestedOneWithoutCoverImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutAdditionalImagesInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductCreateNestedOneWithoutAdditionalImagesInput>;
+    @Field(() => ProductCreateNestedOneWithoutImagesInput, {nullable:true})
+    product?: InstanceType<typeof ProductCreateNestedOneWithoutImagesInput>;
 }
 
 @InputType()
-export class ImageCreateWithoutProductAdditionalImagesInput {
+export class ImageCreateWithoutProductInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -1101,30 +1075,6 @@ export class ImageCreateWithoutProductAdditionalImagesInput {
     rgbBackground!: InstanceType<typeof RgbColorCreateNestedOneWithoutImageInput>;
     @Field(() => HomeBlockCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductCreateNestedOneWithoutCoverImageInput>;
-}
-
-@InputType()
-export class ImageCreateWithoutProductCoverImageInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    title?: string;
-    @Field(() => String, {nullable:false})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    imagePath!: string;
-    @Field(() => RgbColorCreateNestedOneWithoutImageInput, {nullable:false})
-    rgbBackground!: InstanceType<typeof RgbColorCreateNestedOneWithoutImageInput>;
-    @Field(() => HomeBlockCreateNestedOneWithoutImageInput, {nullable:true})
-    homeBlock?: InstanceType<typeof HomeBlockCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutAdditionalImagesInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductCreateNestedOneWithoutAdditionalImagesInput>;
 }
 
 @InputType()
@@ -1143,10 +1093,8 @@ export class ImageCreateWithoutRgbBackgroundInput {
     imagePath!: string;
     @Field(() => HomeBlockCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductCreateNestedOneWithoutCoverImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutAdditionalImagesInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductCreateNestedOneWithoutAdditionalImagesInput>;
+    @Field(() => ProductCreateNestedOneWithoutImagesInput, {nullable:true})
+    product?: InstanceType<typeof ProductCreateNestedOneWithoutImagesInput>;
 }
 
 @InputType()
@@ -1167,10 +1115,8 @@ export class ImageCreateInput {
     rgbBackground!: InstanceType<typeof RgbColorCreateNestedOneWithoutImageInput>;
     @Field(() => HomeBlockCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductCreateNestedOneWithoutCoverImageInput>;
-    @Field(() => ProductCreateNestedOneWithoutAdditionalImagesInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductCreateNestedOneWithoutAdditionalImagesInput>;
+    @Field(() => ProductCreateNestedOneWithoutImagesInput, {nullable:true})
+    product?: InstanceType<typeof ProductCreateNestedOneWithoutImagesInput>;
 }
 
 @ArgsType()
@@ -1370,9 +1316,7 @@ export class ImageOrderByWithRelationInput {
     @Field(() => HomeBlockOrderByWithRelationInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockOrderByWithRelationInput>;
     @Field(() => ProductOrderByWithRelationInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductOrderByWithRelationInput>;
-    @Field(() => ProductOrderByWithRelationInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductOrderByWithRelationInput>;
+    product?: InstanceType<typeof ProductOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     productId?: keyof typeof SortOrder;
 }
@@ -1426,16 +1370,16 @@ export class ImageScalarWhereInput {
 }
 
 @InputType()
-export class ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput {
-    @Field(() => [ImageCreateWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create?: Array<ImageCreateWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageCreateOrConnectWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductAdditionalImagesInput)
-    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>;
-    @Field(() => ImageCreateManyProductAdditionalImagesInputEnvelope, {nullable:true})
-    @Type(() => ImageCreateManyProductAdditionalImagesInputEnvelope)
-    createMany?: InstanceType<typeof ImageCreateManyProductAdditionalImagesInputEnvelope>;
+export class ImageUncheckedCreateNestedManyWithoutProductInput {
+    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateWithoutProductInput)
+    create?: Array<ImageCreateWithoutProductInput>;
+    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ImageCreateManyProductInputEnvelope)
+    createMany?: InstanceType<typeof ImageCreateManyProductInputEnvelope>;
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     connect?: Array<ImageWhereUniqueInput>;
@@ -1473,14 +1417,12 @@ export class ImageUncheckedCreateWithoutHomeBlockInput {
     imagePath!: string;
     @Field(() => String, {nullable:false})
     rgbBackgroundId!: string;
-    @Field(() => ProductUncheckedCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedCreateNestedOneWithoutCoverImageInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
 }
 
 @InputType()
-export class ImageUncheckedCreateWithoutProductAdditionalImagesInput {
+export class ImageUncheckedCreateWithoutProductInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -1497,30 +1439,6 @@ export class ImageUncheckedCreateWithoutProductAdditionalImagesInput {
     rgbBackgroundId!: string;
     @Field(() => HomeBlockUncheckedCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductUncheckedCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedCreateNestedOneWithoutCoverImageInput>;
-}
-
-@InputType()
-export class ImageUncheckedCreateWithoutProductCoverImageInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    title?: string;
-    @Field(() => String, {nullable:false})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    imagePath!: string;
-    @Field(() => String, {nullable:false})
-    rgbBackgroundId!: string;
-    @Field(() => HomeBlockUncheckedCreateNestedOneWithoutImageInput, {nullable:true})
-    homeBlock?: InstanceType<typeof HomeBlockUncheckedCreateNestedOneWithoutImageInput>;
-    @Field(() => String, {nullable:true})
-    productId?: string;
 }
 
 @InputType()
@@ -1539,8 +1457,6 @@ export class ImageUncheckedCreateWithoutRgbBackgroundInput {
     imagePath!: string;
     @Field(() => HomeBlockUncheckedCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductUncheckedCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedCreateNestedOneWithoutCoverImageInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
 }
@@ -1563,28 +1479,8 @@ export class ImageUncheckedCreateInput {
     rgbBackgroundId!: string;
     @Field(() => HomeBlockUncheckedCreateNestedOneWithoutImageInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedCreateNestedOneWithoutImageInput>;
-    @Field(() => ProductUncheckedCreateNestedOneWithoutCoverImageInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedCreateNestedOneWithoutCoverImageInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
-}
-
-@InputType()
-export class ImageUncheckedUpdateManyWithoutAdditionalImagesInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    title?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    imagePath?: string;
-    @Field(() => String, {nullable:true})
-    rgbBackgroundId?: string;
 }
 
 @InputType()
@@ -1606,19 +1502,37 @@ export class ImageUncheckedUpdateManyWithoutImageInput {
 }
 
 @InputType()
-export class ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput {
-    @Field(() => [ImageCreateWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create?: Array<ImageCreateWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageCreateOrConnectWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductAdditionalImagesInput)
-    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput)
-    upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput>;
-    @Field(() => ImageCreateManyProductAdditionalImagesInputEnvelope, {nullable:true})
-    @Type(() => ImageCreateManyProductAdditionalImagesInputEnvelope)
-    createMany?: InstanceType<typeof ImageCreateManyProductAdditionalImagesInputEnvelope>;
+export class ImageUncheckedUpdateManyWithoutImagesInput {
+    @Field(() => String, {nullable:true})
+    id?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    title?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    imagePath?: string;
+    @Field(() => String, {nullable:true})
+    rgbBackgroundId?: string;
+}
+
+@InputType()
+export class ImageUncheckedUpdateManyWithoutProductNestedInput {
+    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateWithoutProductInput)
+    create?: Array<ImageCreateWithoutProductInput>;
+    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+    @Field(() => [ImageUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpsertWithWhereUniqueWithoutProductInput)
+    upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductInput>;
+    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ImageCreateManyProductInputEnvelope)
+    createMany?: InstanceType<typeof ImageCreateManyProductInputEnvelope>;
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     set?: Array<ImageWhereUniqueInput>;
@@ -1631,12 +1545,12 @@ export class ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput {
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     connect?: Array<ImageWhereUniqueInput>;
-    @Field(() => [ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput)
-    update?: Array<ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput)
-    updateMany?: Array<ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput>;
+    @Field(() => [ImageUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateWithWhereUniqueWithoutProductInput)
+    update?: Array<ImageUpdateWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ImageUpdateManyWithWhereWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateManyWithWhereWithoutProductInput)
+    updateMany?: Array<ImageUpdateManyWithWhereWithoutProductInput>;
     @Field(() => [ImageScalarWhereInput], {nullable:true})
     @Type(() => ImageScalarWhereInput)
     deleteMany?: Array<ImageScalarWhereInput>;
@@ -1715,14 +1629,12 @@ export class ImageUncheckedUpdateWithoutHomeBlockInput {
     imagePath?: string;
     @Field(() => String, {nullable:true})
     rgbBackgroundId?: string;
-    @Field(() => ProductUncheckedUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedUpdateOneWithoutCoverImageNestedInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
 }
 
 @InputType()
-export class ImageUncheckedUpdateWithoutProductAdditionalImagesInput {
+export class ImageUncheckedUpdateWithoutProductInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -1739,30 +1651,6 @@ export class ImageUncheckedUpdateWithoutProductAdditionalImagesInput {
     rgbBackgroundId?: string;
     @Field(() => HomeBlockUncheckedUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUncheckedUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedUpdateOneWithoutCoverImageNestedInput>;
-}
-
-@InputType()
-export class ImageUncheckedUpdateWithoutProductCoverImageInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    title?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    imagePath?: string;
-    @Field(() => String, {nullable:true})
-    rgbBackgroundId?: string;
-    @Field(() => HomeBlockUncheckedUpdateOneWithoutImageNestedInput, {nullable:true})
-    homeBlock?: InstanceType<typeof HomeBlockUncheckedUpdateOneWithoutImageNestedInput>;
-    @Field(() => String, {nullable:true})
-    productId?: string;
 }
 
 @InputType()
@@ -1781,8 +1669,6 @@ export class ImageUncheckedUpdateWithoutRgbBackgroundInput {
     imagePath?: string;
     @Field(() => HomeBlockUncheckedUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUncheckedUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedUpdateOneWithoutCoverImageNestedInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
 }
@@ -1805,8 +1691,6 @@ export class ImageUncheckedUpdateInput {
     rgbBackgroundId?: string;
     @Field(() => HomeBlockUncheckedUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUncheckedUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUncheckedUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUncheckedUpdateOneWithoutCoverImageNestedInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
 }
@@ -1828,7 +1712,7 @@ export class ImageUpdateManyMutationInput {
 }
 
 @InputType()
-export class ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput {
+export class ImageUpdateManyWithWhereWithoutProductInput {
     @Field(() => ImageScalarWhereInput, {nullable:false})
     @Type(() => ImageScalarWhereInput)
     where!: InstanceType<typeof ImageScalarWhereInput>;
@@ -1848,19 +1732,19 @@ export class ImageUpdateManyWithWhereWithoutRgbBackgroundInput {
 }
 
 @InputType()
-export class ImageUpdateManyWithoutProductAdditionalImagesNestedInput {
-    @Field(() => [ImageCreateWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create?: Array<ImageCreateWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageCreateOrConnectWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductAdditionalImagesInput)
-    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput)
-    upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput>;
-    @Field(() => ImageCreateManyProductAdditionalImagesInputEnvelope, {nullable:true})
-    @Type(() => ImageCreateManyProductAdditionalImagesInputEnvelope)
-    createMany?: InstanceType<typeof ImageCreateManyProductAdditionalImagesInputEnvelope>;
+export class ImageUpdateManyWithoutProductNestedInput {
+    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateWithoutProductInput)
+    create?: Array<ImageCreateWithoutProductInput>;
+    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+    @Field(() => [ImageUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpsertWithWhereUniqueWithoutProductInput)
+    upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductInput>;
+    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ImageCreateManyProductInputEnvelope)
+    createMany?: InstanceType<typeof ImageCreateManyProductInputEnvelope>;
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     set?: Array<ImageWhereUniqueInput>;
@@ -1873,12 +1757,12 @@ export class ImageUpdateManyWithoutProductAdditionalImagesNestedInput {
     @Field(() => [ImageWhereUniqueInput], {nullable:true})
     @Type(() => ImageWhereUniqueInput)
     connect?: Array<ImageWhereUniqueInput>;
-    @Field(() => [ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput)
-    update?: Array<ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput>;
-    @Field(() => [ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput], {nullable:true})
-    @Type(() => ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput)
-    updateMany?: Array<ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput>;
+    @Field(() => [ImageUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateWithWhereUniqueWithoutProductInput)
+    update?: Array<ImageUpdateWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ImageUpdateManyWithWhereWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateManyWithWhereWithoutProductInput)
+    updateMany?: Array<ImageUpdateManyWithWhereWithoutProductInput>;
     @Field(() => [ImageScalarWhereInput], {nullable:true})
     @Type(() => ImageScalarWhereInput)
     deleteMany?: Array<ImageScalarWhereInput>;
@@ -1941,32 +1825,13 @@ export class ImageUpdateOneRequiredWithoutHomeBlockNestedInput {
 }
 
 @InputType()
-export class ImageUpdateOneRequiredWithoutProductCoverImageNestedInput {
-    @Field(() => ImageCreateWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageCreateWithoutProductCoverImageInput)
-    create?: InstanceType<typeof ImageCreateWithoutProductCoverImageInput>;
-    @Field(() => ImageCreateOrConnectWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ImageCreateOrConnectWithoutProductCoverImageInput>;
-    @Field(() => ImageUpsertWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageUpsertWithoutProductCoverImageInput)
-    upsert?: InstanceType<typeof ImageUpsertWithoutProductCoverImageInput>;
-    @Field(() => ImageWhereUniqueInput, {nullable:true})
-    @Type(() => ImageWhereUniqueInput)
-    connect?: InstanceType<typeof ImageWhereUniqueInput>;
-    @Field(() => ImageUpdateWithoutProductCoverImageInput, {nullable:true})
-    @Type(() => ImageUpdateWithoutProductCoverImageInput)
-    update?: InstanceType<typeof ImageUpdateWithoutProductCoverImageInput>;
-}
-
-@InputType()
-export class ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput {
+export class ImageUpdateWithWhereUniqueWithoutProductInput {
     @Field(() => ImageWhereUniqueInput, {nullable:false})
     @Type(() => ImageWhereUniqueInput)
     where!: InstanceType<typeof ImageWhereUniqueInput>;
-    @Field(() => ImageUpdateWithoutProductAdditionalImagesInput, {nullable:false})
-    @Type(() => ImageUpdateWithoutProductAdditionalImagesInput)
-    data!: InstanceType<typeof ImageUpdateWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageUpdateWithoutProductInput, {nullable:false})
+    @Type(() => ImageUpdateWithoutProductInput)
+    data!: InstanceType<typeof ImageUpdateWithoutProductInput>;
 }
 
 @InputType()
@@ -1995,14 +1860,12 @@ export class ImageUpdateWithoutHomeBlockInput {
     imagePath?: string;
     @Field(() => RgbColorUpdateOneRequiredWithoutImageNestedInput, {nullable:true})
     rgbBackground?: InstanceType<typeof RgbColorUpdateOneRequiredWithoutImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUpdateOneWithoutCoverImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutAdditionalImagesNestedInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductUpdateOneWithoutAdditionalImagesNestedInput>;
+    @Field(() => ProductUpdateOneWithoutImagesNestedInput, {nullable:true})
+    product?: InstanceType<typeof ProductUpdateOneWithoutImagesNestedInput>;
 }
 
 @InputType()
-export class ImageUpdateWithoutProductAdditionalImagesInput {
+export class ImageUpdateWithoutProductInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -2019,30 +1882,6 @@ export class ImageUpdateWithoutProductAdditionalImagesInput {
     rgbBackground?: InstanceType<typeof RgbColorUpdateOneRequiredWithoutImageNestedInput>;
     @Field(() => HomeBlockUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUpdateOneWithoutCoverImageNestedInput>;
-}
-
-@InputType()
-export class ImageUpdateWithoutProductCoverImageInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    title?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    imagePath?: string;
-    @Field(() => RgbColorUpdateOneRequiredWithoutImageNestedInput, {nullable:true})
-    rgbBackground?: InstanceType<typeof RgbColorUpdateOneRequiredWithoutImageNestedInput>;
-    @Field(() => HomeBlockUpdateOneWithoutImageNestedInput, {nullable:true})
-    homeBlock?: InstanceType<typeof HomeBlockUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutAdditionalImagesNestedInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductUpdateOneWithoutAdditionalImagesNestedInput>;
 }
 
 @InputType()
@@ -2061,10 +1900,8 @@ export class ImageUpdateWithoutRgbBackgroundInput {
     imagePath?: string;
     @Field(() => HomeBlockUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUpdateOneWithoutCoverImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutAdditionalImagesNestedInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductUpdateOneWithoutAdditionalImagesNestedInput>;
+    @Field(() => ProductUpdateOneWithoutImagesNestedInput, {nullable:true})
+    product?: InstanceType<typeof ProductUpdateOneWithoutImagesNestedInput>;
 }
 
 @InputType()
@@ -2085,23 +1922,21 @@ export class ImageUpdateInput {
     rgbBackground?: InstanceType<typeof RgbColorUpdateOneRequiredWithoutImageNestedInput>;
     @Field(() => HomeBlockUpdateOneWithoutImageNestedInput, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockUpdateOneWithoutImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutCoverImageNestedInput, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductUpdateOneWithoutCoverImageNestedInput>;
-    @Field(() => ProductUpdateOneWithoutAdditionalImagesNestedInput, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductUpdateOneWithoutAdditionalImagesNestedInput>;
+    @Field(() => ProductUpdateOneWithoutImagesNestedInput, {nullable:true})
+    product?: InstanceType<typeof ProductUpdateOneWithoutImagesNestedInput>;
 }
 
 @InputType()
-export class ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput {
+export class ImageUpsertWithWhereUniqueWithoutProductInput {
     @Field(() => ImageWhereUniqueInput, {nullable:false})
     @Type(() => ImageWhereUniqueInput)
     where!: InstanceType<typeof ImageWhereUniqueInput>;
-    @Field(() => ImageUpdateWithoutProductAdditionalImagesInput, {nullable:false})
-    @Type(() => ImageUpdateWithoutProductAdditionalImagesInput)
-    update!: InstanceType<typeof ImageUpdateWithoutProductAdditionalImagesInput>;
-    @Field(() => ImageCreateWithoutProductAdditionalImagesInput, {nullable:false})
-    @Type(() => ImageCreateWithoutProductAdditionalImagesInput)
-    create!: InstanceType<typeof ImageCreateWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageUpdateWithoutProductInput, {nullable:false})
+    @Type(() => ImageUpdateWithoutProductInput)
+    update!: InstanceType<typeof ImageUpdateWithoutProductInput>;
+    @Field(() => ImageCreateWithoutProductInput, {nullable:false})
+    @Type(() => ImageCreateWithoutProductInput)
+    create!: InstanceType<typeof ImageCreateWithoutProductInput>;
 }
 
 @InputType()
@@ -2125,16 +1960,6 @@ export class ImageUpsertWithoutHomeBlockInput {
     @Field(() => ImageCreateWithoutHomeBlockInput, {nullable:false})
     @Type(() => ImageCreateWithoutHomeBlockInput)
     create!: InstanceType<typeof ImageCreateWithoutHomeBlockInput>;
-}
-
-@InputType()
-export class ImageUpsertWithoutProductCoverImageInput {
-    @Field(() => ImageUpdateWithoutProductCoverImageInput, {nullable:false})
-    @Type(() => ImageUpdateWithoutProductCoverImageInput)
-    update!: InstanceType<typeof ImageUpdateWithoutProductCoverImageInput>;
-    @Field(() => ImageCreateWithoutProductCoverImageInput, {nullable:false})
-    @Type(() => ImageCreateWithoutProductCoverImageInput)
-    create!: InstanceType<typeof ImageCreateWithoutProductCoverImageInput>;
 }
 
 @InputType()
@@ -2164,9 +1989,7 @@ export class ImageWhereInput {
     @Field(() => HomeBlockRelationFilter, {nullable:true})
     homeBlock?: InstanceType<typeof HomeBlockRelationFilter>;
     @Field(() => ProductRelationFilter, {nullable:true})
-    ProductCoverImage?: InstanceType<typeof ProductRelationFilter>;
-    @Field(() => ProductRelationFilter, {nullable:true})
-    ProductAdditionalImages?: InstanceType<typeof ProductRelationFilter>;
+    product?: InstanceType<typeof ProductRelationFilter>;
     @Field(() => StringFilter, {nullable:true})
     productId?: InstanceType<typeof StringFilter>;
 }
@@ -2186,9 +2009,7 @@ export class Image {
     @HideField()
     homeBlock?: InstanceType<typeof HomeBlock> | null;
     @HideField()
-    ProductCoverImage?: InstanceType<typeof Product> | null;
-    @HideField()
-    ProductAdditionalImages?: InstanceType<typeof Product> | null;
+    product?: InstanceType<typeof Product> | null;
     @HideField()
     productId!: string | null;
 }
@@ -2578,8 +2399,6 @@ export class ProductCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     discountPrice?: true;
     @Field(() => Boolean, {nullable:true})
-    coverImageId?: true;
-    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }
 
@@ -2594,8 +2413,6 @@ export class ProductCountAggregate {
     @Field(() => Int, {nullable:false})
     discountPrice!: number;
     @Field(() => Int, {nullable:false})
-    coverImageId!: number;
-    @Field(() => Int, {nullable:false})
     _all!: number;
 }
 
@@ -2609,14 +2426,12 @@ export class ProductCountOrderByAggregateInput {
     price?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     discountPrice?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    coverImageId?: keyof typeof SortOrder;
 }
 
 @ObjectType()
 export class ProductCount {
     @Field(() => Int, {nullable:false})
-    additionalImages?: number;
+    images?: number;
     @Field(() => Int, {nullable:false})
     availableColors?: number;
 }
@@ -2634,21 +2449,6 @@ export class ProductCreateManyInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
-}
-
-@InputType()
-export class ProductCreateNestedOneWithoutAdditionalImagesInput {
-    @Field(() => ProductCreateWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductCreateWithoutAdditionalImagesInput)
-    create?: InstanceType<typeof ProductCreateWithoutAdditionalImagesInput>;
-    @Field(() => ProductCreateOrConnectWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutAdditionalImagesInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutAdditionalImagesInput>;
-    @Field(() => ProductWhereUniqueInput, {nullable:true})
-    @Type(() => ProductWhereUniqueInput)
-    connect?: InstanceType<typeof ProductWhereUniqueInput>;
 }
 
 @InputType()
@@ -2665,26 +2465,16 @@ export class ProductCreateNestedOneWithoutAvailableColorsInput {
 }
 
 @InputType()
-export class ProductCreateNestedOneWithoutCoverImageInput {
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create?: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
-    @Field(() => ProductCreateOrConnectWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutCoverImageInput>;
+export class ProductCreateNestedOneWithoutImagesInput {
+    @Field(() => ProductCreateWithoutImagesInput, {nullable:true})
+    @Type(() => ProductCreateWithoutImagesInput)
+    create?: InstanceType<typeof ProductCreateWithoutImagesInput>;
+    @Field(() => ProductCreateOrConnectWithoutImagesInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutImagesInput)
+    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutImagesInput>;
     @Field(() => ProductWhereUniqueInput, {nullable:true})
     @Type(() => ProductWhereUniqueInput)
     connect?: InstanceType<typeof ProductWhereUniqueInput>;
-}
-
-@InputType()
-export class ProductCreateOrConnectWithoutAdditionalImagesInput {
-    @Field(() => ProductWhereUniqueInput, {nullable:false})
-    @Type(() => ProductWhereUniqueInput)
-    where!: InstanceType<typeof ProductWhereUniqueInput>;
-    @Field(() => ProductCreateWithoutAdditionalImagesInput, {nullable:false})
-    @Type(() => ProductCreateWithoutAdditionalImagesInput)
-    create!: InstanceType<typeof ProductCreateWithoutAdditionalImagesInput>;
 }
 
 @InputType()
@@ -2698,32 +2488,13 @@ export class ProductCreateOrConnectWithoutAvailableColorsInput {
 }
 
 @InputType()
-export class ProductCreateOrConnectWithoutCoverImageInput {
+export class ProductCreateOrConnectWithoutImagesInput {
     @Field(() => ProductWhereUniqueInput, {nullable:false})
     @Type(() => ProductWhereUniqueInput)
     where!: InstanceType<typeof ProductWhereUniqueInput>;
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:false})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create!: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
-}
-
-@InputType()
-export class ProductCreateWithoutAdditionalImagesInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:false})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    price!: number;
-    @Field(() => Int, {nullable:true})
-    discountPrice?: number;
-    @Field(() => ImageCreateNestedOneWithoutProductCoverImageInput, {nullable:false})
-    coverImage!: InstanceType<typeof ImageCreateNestedOneWithoutProductCoverImageInput>;
-    @Field(() => RgbColorCreateNestedManyWithoutProductInput, {nullable:true})
-    availableColors?: InstanceType<typeof RgbColorCreateNestedManyWithoutProductInput>;
+    @Field(() => ProductCreateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductCreateWithoutImagesInput)
+    create!: InstanceType<typeof ProductCreateWithoutImagesInput>;
 }
 
 @InputType()
@@ -2739,14 +2510,12 @@ export class ProductCreateWithoutAvailableColorsInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageCreateNestedOneWithoutProductCoverImageInput, {nullable:false})
-    coverImage!: InstanceType<typeof ImageCreateNestedOneWithoutProductCoverImageInput>;
-    @Field(() => ImageCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageCreateNestedManyWithoutProductInput, {nullable:true})
+    images?: InstanceType<typeof ImageCreateNestedManyWithoutProductInput>;
 }
 
 @InputType()
-export class ProductCreateWithoutCoverImageInput {
+export class ProductCreateWithoutImagesInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:false})
@@ -2758,8 +2527,6 @@ export class ProductCreateWithoutCoverImageInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
     @Field(() => RgbColorCreateNestedManyWithoutProductInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorCreateNestedManyWithoutProductInput>;
 }
@@ -2777,10 +2544,8 @@ export class ProductCreateInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageCreateNestedOneWithoutProductCoverImageInput, {nullable:false})
-    coverImage!: InstanceType<typeof ImageCreateNestedOneWithoutProductCoverImageInput>;
-    @Field(() => ImageCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageCreateNestedManyWithoutProductInput, {nullable:true})
+    images?: InstanceType<typeof ImageCreateNestedManyWithoutProductInput>;
     @Field(() => RgbColorCreateNestedManyWithoutProductInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorCreateNestedManyWithoutProductInput>;
 }
@@ -2826,8 +2591,6 @@ export class ProductGroupBy {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
     @Field(() => ProductCountAggregate, {nullable:true})
     _count?: InstanceType<typeof ProductCountAggregate>;
     @Field(() => ProductAvgAggregate, {nullable:true})
@@ -2850,8 +2613,6 @@ export class ProductMaxAggregateInput {
     price?: true;
     @Field(() => Boolean, {nullable:true})
     discountPrice?: true;
-    @Field(() => Boolean, {nullable:true})
-    coverImageId?: true;
 }
 
 @ObjectType()
@@ -2867,8 +2628,6 @@ export class ProductMaxAggregate {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
 }
 
 @InputType()
@@ -2881,8 +2640,6 @@ export class ProductMaxOrderByAggregateInput {
     price?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     discountPrice?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    coverImageId?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -2895,8 +2652,6 @@ export class ProductMinAggregateInput {
     price?: true;
     @Field(() => Boolean, {nullable:true})
     discountPrice?: true;
-    @Field(() => Boolean, {nullable:true})
-    coverImageId?: true;
 }
 
 @ObjectType()
@@ -2912,8 +2667,6 @@ export class ProductMinAggregate {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
 }
 
 @InputType()
@@ -2926,8 +2679,6 @@ export class ProductMinOrderByAggregateInput {
     price?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     discountPrice?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    coverImageId?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -2940,8 +2691,6 @@ export class ProductOrderByWithAggregationInput {
     price?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     discountPrice?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    coverImageId?: keyof typeof SortOrder;
     @Field(() => ProductCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof ProductCountOrderByAggregateInput>;
     @Field(() => ProductAvgOrderByAggregateInput, {nullable:true})
@@ -2964,12 +2713,8 @@ export class ProductOrderByWithRelationInput {
     price?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     discountPrice?: keyof typeof SortOrder;
-    @Field(() => ImageOrderByWithRelationInput, {nullable:true})
-    coverImage?: InstanceType<typeof ImageOrderByWithRelationInput>;
-    @Field(() => SortOrder, {nullable:true})
-    coverImageId?: keyof typeof SortOrder;
     @Field(() => ImageOrderByRelationAggregateInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageOrderByRelationAggregateInput>;
+    images?: InstanceType<typeof ImageOrderByRelationAggregateInput>;
     @Field(() => RgbColorOrderByRelationAggregateInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorOrderByRelationAggregateInput>;
 }
@@ -2998,8 +2743,6 @@ export class ProductScalarWhereWithAggregatesInput {
     price?: InstanceType<typeof IntWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     discountPrice?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    coverImageId?: InstanceType<typeof StringWithAggregatesFilter>;
 }
 
 @InputType()
@@ -3027,38 +2770,6 @@ export class ProductSumOrderByAggregateInput {
 }
 
 @InputType()
-export class ProductUncheckedCreateNestedOneWithoutCoverImageInput {
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create?: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
-    @Field(() => ProductCreateOrConnectWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutCoverImageInput>;
-    @Field(() => ProductWhereUniqueInput, {nullable:true})
-    @Type(() => ProductWhereUniqueInput)
-    connect?: InstanceType<typeof ProductWhereUniqueInput>;
-}
-
-@InputType()
-export class ProductUncheckedCreateWithoutAdditionalImagesInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:false})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    price!: number;
-    @Field(() => Int, {nullable:true})
-    discountPrice?: number;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
-    @Field(() => RgbColorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    availableColors?: InstanceType<typeof RgbColorUncheckedCreateNestedManyWithoutProductInput>;
-}
-
-@InputType()
 export class ProductUncheckedCreateWithoutAvailableColorsInput {
     @Field(() => String, {nullable:true})
     id?: string;
@@ -3071,14 +2782,12 @@ export class ProductUncheckedCreateWithoutAvailableColorsInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
-    @Field(() => ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
+    images?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutProductInput>;
 }
 
 @InputType()
-export class ProductUncheckedCreateWithoutCoverImageInput {
+export class ProductUncheckedCreateWithoutImagesInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:false})
@@ -3090,8 +2799,6 @@ export class ProductUncheckedCreateWithoutCoverImageInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput>;
     @Field(() => RgbColorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUncheckedCreateNestedManyWithoutProductInput>;
 }
@@ -3109,10 +2816,8 @@ export class ProductUncheckedCreateInput {
     price!: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
-    @Field(() => ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutProductAdditionalImagesInput>;
+    @Field(() => ImageUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
+    images?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutProductInput>;
     @Field(() => RgbColorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUncheckedCreateNestedManyWithoutProductInput>;
 }
@@ -3130,50 +2835,6 @@ export class ProductUncheckedUpdateManyInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
-}
-
-@InputType()
-export class ProductUncheckedUpdateOneWithoutCoverImageNestedInput {
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create?: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
-    @Field(() => ProductCreateOrConnectWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutCoverImageInput>;
-    @Field(() => ProductUpsertWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductUpsertWithoutCoverImageInput)
-    upsert?: InstanceType<typeof ProductUpsertWithoutCoverImageInput>;
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
-    @Field(() => ProductWhereUniqueInput, {nullable:true})
-    @Type(() => ProductWhereUniqueInput)
-    connect?: InstanceType<typeof ProductWhereUniqueInput>;
-    @Field(() => ProductUpdateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductUpdateWithoutCoverImageInput)
-    update?: InstanceType<typeof ProductUpdateWithoutCoverImageInput>;
-}
-
-@InputType()
-export class ProductUncheckedUpdateWithoutAdditionalImagesInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    name?: string;
-    @Field(() => Int, {nullable:true})
-    price?: number;
-    @Field(() => Int, {nullable:true})
-    discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
-    @Field(() => RgbColorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
-    availableColors?: InstanceType<typeof RgbColorUncheckedUpdateManyWithoutProductNestedInput>;
 }
 
 @InputType()
@@ -3189,14 +2850,12 @@ export class ProductUncheckedUpdateWithoutAvailableColorsInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
-    @Field(() => ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput>;
+    @Field(() => ImageUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    images?: InstanceType<typeof ImageUncheckedUpdateManyWithoutProductNestedInput>;
 }
 
 @InputType()
-export class ProductUncheckedUpdateWithoutCoverImageInput {
+export class ProductUncheckedUpdateWithoutImagesInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -3208,8 +2867,6 @@ export class ProductUncheckedUpdateWithoutCoverImageInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput>;
     @Field(() => RgbColorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUncheckedUpdateManyWithoutProductNestedInput>;
 }
@@ -3227,10 +2884,8 @@ export class ProductUncheckedUpdateInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
-    @Field(() => ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUncheckedUpdateManyWithoutProductAdditionalImagesNestedInput>;
+    @Field(() => ImageUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    images?: InstanceType<typeof ImageUncheckedUpdateManyWithoutProductNestedInput>;
     @Field(() => RgbColorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUncheckedUpdateManyWithoutProductNestedInput>;
 }
@@ -3248,29 +2903,6 @@ export class ProductUpdateManyMutationInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-}
-
-@InputType()
-export class ProductUpdateOneWithoutAdditionalImagesNestedInput {
-    @Field(() => ProductCreateWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductCreateWithoutAdditionalImagesInput)
-    create?: InstanceType<typeof ProductCreateWithoutAdditionalImagesInput>;
-    @Field(() => ProductCreateOrConnectWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutAdditionalImagesInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutAdditionalImagesInput>;
-    @Field(() => ProductUpsertWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductUpsertWithoutAdditionalImagesInput)
-    upsert?: InstanceType<typeof ProductUpsertWithoutAdditionalImagesInput>;
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
-    @Field(() => ProductWhereUniqueInput, {nullable:true})
-    @Type(() => ProductWhereUniqueInput)
-    connect?: InstanceType<typeof ProductWhereUniqueInput>;
-    @Field(() => ProductUpdateWithoutAdditionalImagesInput, {nullable:true})
-    @Type(() => ProductUpdateWithoutAdditionalImagesInput)
-    update?: InstanceType<typeof ProductUpdateWithoutAdditionalImagesInput>;
 }
 
 @InputType()
@@ -3297,16 +2929,16 @@ export class ProductUpdateOneWithoutAvailableColorsNestedInput {
 }
 
 @InputType()
-export class ProductUpdateOneWithoutCoverImageNestedInput {
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create?: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
-    @Field(() => ProductCreateOrConnectWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutCoverImageInput)
-    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutCoverImageInput>;
-    @Field(() => ProductUpsertWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductUpsertWithoutCoverImageInput)
-    upsert?: InstanceType<typeof ProductUpsertWithoutCoverImageInput>;
+export class ProductUpdateOneWithoutImagesNestedInput {
+    @Field(() => ProductCreateWithoutImagesInput, {nullable:true})
+    @Type(() => ProductCreateWithoutImagesInput)
+    create?: InstanceType<typeof ProductCreateWithoutImagesInput>;
+    @Field(() => ProductCreateOrConnectWithoutImagesInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutImagesInput)
+    connectOrCreate?: InstanceType<typeof ProductCreateOrConnectWithoutImagesInput>;
+    @Field(() => ProductUpsertWithoutImagesInput, {nullable:true})
+    @Type(() => ProductUpsertWithoutImagesInput)
+    upsert?: InstanceType<typeof ProductUpsertWithoutImagesInput>;
     @Field(() => Boolean, {nullable:true})
     disconnect?: boolean;
     @Field(() => Boolean, {nullable:true})
@@ -3314,28 +2946,9 @@ export class ProductUpdateOneWithoutCoverImageNestedInput {
     @Field(() => ProductWhereUniqueInput, {nullable:true})
     @Type(() => ProductWhereUniqueInput)
     connect?: InstanceType<typeof ProductWhereUniqueInput>;
-    @Field(() => ProductUpdateWithoutCoverImageInput, {nullable:true})
-    @Type(() => ProductUpdateWithoutCoverImageInput)
-    update?: InstanceType<typeof ProductUpdateWithoutCoverImageInput>;
-}
-
-@InputType()
-export class ProductUpdateWithoutAdditionalImagesInput {
-    @Field(() => String, {nullable:true})
-    id?: string;
-    @Field(() => String, {nullable:true})
-    @Validator.IsString()
-    @Validator.MaxLength(100)
-    @Validator.MinLength(3)
-    name?: string;
-    @Field(() => Int, {nullable:true})
-    price?: number;
-    @Field(() => Int, {nullable:true})
-    discountPrice?: number;
-    @Field(() => ImageUpdateOneRequiredWithoutProductCoverImageNestedInput, {nullable:true})
-    coverImage?: InstanceType<typeof ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
-    @Field(() => RgbColorUpdateManyWithoutProductNestedInput, {nullable:true})
-    availableColors?: InstanceType<typeof RgbColorUpdateManyWithoutProductNestedInput>;
+    @Field(() => ProductUpdateWithoutImagesInput, {nullable:true})
+    @Type(() => ProductUpdateWithoutImagesInput)
+    update?: InstanceType<typeof ProductUpdateWithoutImagesInput>;
 }
 
 @InputType()
@@ -3351,14 +2964,12 @@ export class ProductUpdateWithoutAvailableColorsInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageUpdateOneRequiredWithoutProductCoverImageNestedInput, {nullable:true})
-    coverImage?: InstanceType<typeof ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
-    @Field(() => ImageUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
+    @Field(() => ImageUpdateManyWithoutProductNestedInput, {nullable:true})
+    images?: InstanceType<typeof ImageUpdateManyWithoutProductNestedInput>;
 }
 
 @InputType()
-export class ProductUpdateWithoutCoverImageInput {
+export class ProductUpdateWithoutImagesInput {
     @Field(() => String, {nullable:true})
     id?: string;
     @Field(() => String, {nullable:true})
@@ -3370,8 +2981,6 @@ export class ProductUpdateWithoutCoverImageInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
     @Field(() => RgbColorUpdateManyWithoutProductNestedInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUpdateManyWithoutProductNestedInput>;
 }
@@ -3389,22 +2998,10 @@ export class ProductUpdateInput {
     price?: number;
     @Field(() => Int, {nullable:true})
     discountPrice?: number;
-    @Field(() => ImageUpdateOneRequiredWithoutProductCoverImageNestedInput, {nullable:true})
-    coverImage?: InstanceType<typeof ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
-    @Field(() => ImageUpdateManyWithoutProductAdditionalImagesNestedInput, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
+    @Field(() => ImageUpdateManyWithoutProductNestedInput, {nullable:true})
+    images?: InstanceType<typeof ImageUpdateManyWithoutProductNestedInput>;
     @Field(() => RgbColorUpdateManyWithoutProductNestedInput, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorUpdateManyWithoutProductNestedInput>;
-}
-
-@InputType()
-export class ProductUpsertWithoutAdditionalImagesInput {
-    @Field(() => ProductUpdateWithoutAdditionalImagesInput, {nullable:false})
-    @Type(() => ProductUpdateWithoutAdditionalImagesInput)
-    update!: InstanceType<typeof ProductUpdateWithoutAdditionalImagesInput>;
-    @Field(() => ProductCreateWithoutAdditionalImagesInput, {nullable:false})
-    @Type(() => ProductCreateWithoutAdditionalImagesInput)
-    create!: InstanceType<typeof ProductCreateWithoutAdditionalImagesInput>;
 }
 
 @InputType()
@@ -3418,13 +3015,13 @@ export class ProductUpsertWithoutAvailableColorsInput {
 }
 
 @InputType()
-export class ProductUpsertWithoutCoverImageInput {
-    @Field(() => ProductUpdateWithoutCoverImageInput, {nullable:false})
-    @Type(() => ProductUpdateWithoutCoverImageInput)
-    update!: InstanceType<typeof ProductUpdateWithoutCoverImageInput>;
-    @Field(() => ProductCreateWithoutCoverImageInput, {nullable:false})
-    @Type(() => ProductCreateWithoutCoverImageInput)
-    create!: InstanceType<typeof ProductCreateWithoutCoverImageInput>;
+export class ProductUpsertWithoutImagesInput {
+    @Field(() => ProductUpdateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductUpdateWithoutImagesInput)
+    update!: InstanceType<typeof ProductUpdateWithoutImagesInput>;
+    @Field(() => ProductCreateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductCreateWithoutImagesInput)
+    create!: InstanceType<typeof ProductCreateWithoutImagesInput>;
 }
 
 @InputType()
@@ -3436,8 +3033,6 @@ export class ProductWhereUniqueInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
-    @Field(() => String, {nullable:true})
-    coverImageId?: string;
 }
 
 @InputType()
@@ -3456,12 +3051,8 @@ export class ProductWhereInput {
     price?: InstanceType<typeof IntFilter>;
     @Field(() => IntFilter, {nullable:true})
     discountPrice?: InstanceType<typeof IntFilter>;
-    @Field(() => ImageRelationFilter, {nullable:true})
-    coverImage?: InstanceType<typeof ImageRelationFilter>;
-    @Field(() => StringFilter, {nullable:true})
-    coverImageId?: InstanceType<typeof StringFilter>;
     @Field(() => ImageListRelationFilter, {nullable:true})
-    additionalImages?: InstanceType<typeof ImageListRelationFilter>;
+    images?: InstanceType<typeof ImageListRelationFilter>;
     @Field(() => RgbColorListRelationFilter, {nullable:true})
     availableColors?: InstanceType<typeof RgbColorListRelationFilter>;
 }
@@ -3486,12 +3077,8 @@ export class Product {
      */
     @Field(() => Int, {nullable:true,description:'@Validator.@IsInt()\n@Validator.@Min(1)\n@Validator.@Max(100_000)'})
     discountPrice!: number | null;
-    @Field(() => Image, {nullable:false})
-    coverImage?: InstanceType<typeof Image>;
-    @Field(() => String, {nullable:false})
-    coverImageId!: string;
     @Field(() => [Image], {nullable:true})
-    additionalImages?: Array<Image>;
+    images?: Array<Image>;
     @Field(() => [RgbColor], {nullable:true})
     availableColors?: Array<RgbColor>;
     @Field(() => ProductCount, {nullable:false})
@@ -3780,7 +3367,7 @@ export class RgbColorCountOrderByAggregateInput {
 @ObjectType()
 export class RgbColorCount {
     @Field(() => Int, {nullable:false})
-    image?: number;
+    Image?: number;
 }
 
 @InputType()
@@ -3936,7 +3523,7 @@ export class RgbColorCreateWithoutProductInput {
     @Field(() => Float, {nullable:true})
     a?: number;
     @Field(() => ImageCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
-    image?: InstanceType<typeof ImageCreateNestedManyWithoutRgbBackgroundInput>;
+    Image?: InstanceType<typeof ImageCreateNestedManyWithoutRgbBackgroundInput>;
 }
 
 @InputType()
@@ -3960,10 +3547,10 @@ export class RgbColorCreateInput {
     b!: number;
     @Field(() => Float, {nullable:true})
     a?: number;
-    @Field(() => ImageCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
-    image?: InstanceType<typeof ImageCreateNestedManyWithoutRgbBackgroundInput>;
     @Field(() => ProductCreateNestedOneWithoutAvailableColorsInput, {nullable:true})
     product?: InstanceType<typeof ProductCreateNestedOneWithoutAvailableColorsInput>;
+    @Field(() => ImageCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
+    Image?: InstanceType<typeof ImageCreateNestedManyWithoutRgbBackgroundInput>;
 }
 
 @ArgsType()
@@ -4197,12 +3784,12 @@ export class RgbColorOrderByWithRelationInput {
     b?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     a?: keyof typeof SortOrder;
-    @Field(() => ImageOrderByRelationAggregateInput, {nullable:true})
-    image?: InstanceType<typeof ImageOrderByRelationAggregateInput>;
     @Field(() => ProductOrderByWithRelationInput, {nullable:true})
     product?: InstanceType<typeof ProductOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     productId?: keyof typeof SortOrder;
+    @Field(() => ImageOrderByRelationAggregateInput, {nullable:true})
+    Image?: InstanceType<typeof ImageOrderByRelationAggregateInput>;
 }
 
 @InputType()
@@ -4365,7 +3952,7 @@ export class RgbColorUncheckedCreateWithoutProductInput {
     @Field(() => Float, {nullable:true})
     a?: number;
     @Field(() => ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
-    image?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput>;
+    Image?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput>;
 }
 
 @InputType()
@@ -4389,10 +3976,10 @@ export class RgbColorUncheckedCreateInput {
     b!: number;
     @Field(() => Float, {nullable:true})
     a?: number;
-    @Field(() => ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
-    image?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
+    @Field(() => ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput, {nullable:true})
+    Image?: InstanceType<typeof ImageUncheckedCreateNestedManyWithoutRgbBackgroundInput>;
 }
 
 @InputType()
@@ -4527,7 +4114,7 @@ export class RgbColorUncheckedUpdateWithoutProductInput {
     @Field(() => Float, {nullable:true})
     a?: number;
     @Field(() => ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
-    image?: InstanceType<typeof ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput>;
+    Image?: InstanceType<typeof ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput>;
 }
 
 @InputType()
@@ -4551,10 +4138,10 @@ export class RgbColorUncheckedUpdateInput {
     b?: number;
     @Field(() => Float, {nullable:true})
     a?: number;
-    @Field(() => ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
-    image?: InstanceType<typeof ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput>;
     @Field(() => String, {nullable:true})
     productId?: string;
+    @Field(() => ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
+    Image?: InstanceType<typeof ImageUncheckedUpdateManyWithoutRgbBackgroundNestedInput>;
 }
 
 @InputType()
@@ -4703,7 +4290,7 @@ export class RgbColorUpdateWithoutProductInput {
     @Field(() => Float, {nullable:true})
     a?: number;
     @Field(() => ImageUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
-    image?: InstanceType<typeof ImageUpdateManyWithoutRgbBackgroundNestedInput>;
+    Image?: InstanceType<typeof ImageUpdateManyWithoutRgbBackgroundNestedInput>;
 }
 
 @InputType()
@@ -4727,10 +4314,10 @@ export class RgbColorUpdateInput {
     b?: number;
     @Field(() => Float, {nullable:true})
     a?: number;
-    @Field(() => ImageUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
-    image?: InstanceType<typeof ImageUpdateManyWithoutRgbBackgroundNestedInput>;
     @Field(() => ProductUpdateOneWithoutAvailableColorsNestedInput, {nullable:true})
     product?: InstanceType<typeof ProductUpdateOneWithoutAvailableColorsNestedInput>;
+    @Field(() => ImageUpdateManyWithoutRgbBackgroundNestedInput, {nullable:true})
+    Image?: InstanceType<typeof ImageUpdateManyWithoutRgbBackgroundNestedInput>;
 }
 
 @InputType()
@@ -4780,12 +4367,12 @@ export class RgbColorWhereInput {
     b?: InstanceType<typeof IntFilter>;
     @Field(() => FloatFilter, {nullable:true})
     a?: InstanceType<typeof FloatFilter>;
-    @Field(() => ImageListRelationFilter, {nullable:true})
-    image?: InstanceType<typeof ImageListRelationFilter>;
     @Field(() => ProductRelationFilter, {nullable:true})
     product?: InstanceType<typeof ProductRelationFilter>;
     @Field(() => StringFilter, {nullable:true})
     productId?: InstanceType<typeof StringFilter>;
+    @Field(() => ImageListRelationFilter, {nullable:true})
+    Image?: InstanceType<typeof ImageListRelationFilter>;
 }
 
 @ObjectType()
@@ -4801,11 +4388,11 @@ export class RgbColor {
     @HideField()
     a!: number | null;
     @HideField()
-    image?: Array<Image>;
-    @HideField()
     product?: InstanceType<typeof Product> | null;
     @HideField()
     productId!: string | null;
+    @Field(() => [Image], {nullable:true})
+    Image?: Array<Image>;
     @Field(() => RgbColorCount, {nullable:false})
     _count?: InstanceType<typeof RgbColorCount>;
 }

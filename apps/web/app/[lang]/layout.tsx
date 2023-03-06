@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { i18n, Locale } from '../../i18n/i18n-config'
 import { getDictionary } from '../../i18n/get-dirctionary'
-import LocaleSwitcher from './component/locale-switcher'
+import LocaleSwitcher from '../component/locale-switcher'
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -51,7 +51,10 @@ export default async function RootLayout({
               <LocaleSwitcher />
             </div>
           </nav>
+
           {children}
+
+          <footer className="h-20 md:h-28 lg:h-36" />
         </div>
       </body>
     </html>

@@ -31,10 +31,10 @@ const GET_HOME_BLOCKS = gql`
 const GET_PRODUCTS = gql`
   query GetProducts {
     products {
-      id
       name
-      coverImage {
-        imagePath
+      price
+      discountPrice
+      images {
         title
         imagePath
         rgbBackground {

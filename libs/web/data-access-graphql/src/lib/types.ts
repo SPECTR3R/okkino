@@ -124,15 +124,15 @@ export type ImageCountAggregate = {
   title: Scalars['Int'];
 };
 
-export type ImageCreateManyProductAdditionalImagesInput = {
+export type ImageCreateManyProductInput = {
   id?: InputMaybe<Scalars['String']>;
   imagePath: Scalars['String'];
   rgbBackgroundId: Scalars['String'];
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ImageCreateManyProductAdditionalImagesInputEnvelope = {
-  data: Array<ImageCreateManyProductAdditionalImagesInput>;
+export type ImageCreateManyProductInputEnvelope = {
+  data: Array<ImageCreateManyProductInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -148,11 +148,11 @@ export type ImageCreateManyRgbBackgroundInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ImageCreateNestedManyWithoutProductAdditionalImagesInput = {
+export type ImageCreateNestedManyWithoutProductInput = {
   connect?: InputMaybe<Array<ImageWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>>;
-  create?: InputMaybe<Array<ImageCreateWithoutProductAdditionalImagesInput>>;
-  createMany?: InputMaybe<ImageCreateManyProductAdditionalImagesInputEnvelope>;
+  connectOrCreate?: InputMaybe<Array<ImageCreateOrConnectWithoutProductInput>>;
+  create?: InputMaybe<Array<ImageCreateWithoutProductInput>>;
+  createMany?: InputMaybe<ImageCreateManyProductInputEnvelope>;
 };
 
 export type ImageCreateNestedManyWithoutRgbBackgroundInput = {
@@ -168,24 +168,13 @@ export type ImageCreateNestedOneWithoutHomeBlockInput = {
   create?: InputMaybe<ImageCreateWithoutHomeBlockInput>;
 };
 
-export type ImageCreateNestedOneWithoutProductCoverImageInput = {
-  connect?: InputMaybe<ImageWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ImageCreateOrConnectWithoutProductCoverImageInput>;
-  create?: InputMaybe<ImageCreateWithoutProductCoverImageInput>;
-};
-
 export type ImageCreateOrConnectWithoutHomeBlockInput = {
   create: ImageCreateWithoutHomeBlockInput;
   where: ImageWhereUniqueInput;
 };
 
-export type ImageCreateOrConnectWithoutProductAdditionalImagesInput = {
-  create: ImageCreateWithoutProductAdditionalImagesInput;
-  where: ImageWhereUniqueInput;
-};
-
-export type ImageCreateOrConnectWithoutProductCoverImageInput = {
-  create: ImageCreateWithoutProductCoverImageInput;
+export type ImageCreateOrConnectWithoutProductInput = {
+  create: ImageCreateWithoutProductInput;
   where: ImageWhereUniqueInput;
 };
 
@@ -195,25 +184,14 @@ export type ImageCreateOrConnectWithoutRgbBackgroundInput = {
 };
 
 export type ImageCreateWithoutHomeBlockInput = {
-  ProductAdditionalImages?: InputMaybe<ProductCreateNestedOneWithoutAdditionalImagesInput>;
-  ProductCoverImage?: InputMaybe<ProductCreateNestedOneWithoutCoverImageInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath: Scalars['String'];
+  product?: InputMaybe<ProductCreateNestedOneWithoutImagesInput>;
   rgbBackground: RgbColorCreateNestedOneWithoutImageInput;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ImageCreateWithoutProductAdditionalImagesInput = {
-  ProductCoverImage?: InputMaybe<ProductCreateNestedOneWithoutCoverImageInput>;
-  homeBlock?: InputMaybe<HomeBlockCreateNestedOneWithoutImageInput>;
-  id?: InputMaybe<Scalars['String']>;
-  imagePath: Scalars['String'];
-  rgbBackground: RgbColorCreateNestedOneWithoutImageInput;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type ImageCreateWithoutProductCoverImageInput = {
-  ProductAdditionalImages?: InputMaybe<ProductCreateNestedOneWithoutAdditionalImagesInput>;
+export type ImageCreateWithoutProductInput = {
   homeBlock?: InputMaybe<HomeBlockCreateNestedOneWithoutImageInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath: Scalars['String'];
@@ -222,11 +200,10 @@ export type ImageCreateWithoutProductCoverImageInput = {
 };
 
 export type ImageCreateWithoutRgbBackgroundInput = {
-  ProductAdditionalImages?: InputMaybe<ProductCreateNestedOneWithoutAdditionalImagesInput>;
-  ProductCoverImage?: InputMaybe<ProductCreateNestedOneWithoutCoverImageInput>;
   homeBlock?: InputMaybe<HomeBlockCreateNestedOneWithoutImageInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath: Scalars['String'];
+  product?: InputMaybe<ProductCreateNestedOneWithoutImagesInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -263,7 +240,7 @@ export type ImageUpdateManyMutationInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput = {
+export type ImageUpdateManyWithWhereWithoutProductInput = {
   data: ImageUpdateManyMutationInput;
   where: ImageScalarWhereInput;
 };
@@ -273,18 +250,18 @@ export type ImageUpdateManyWithWhereWithoutRgbBackgroundInput = {
   where: ImageScalarWhereInput;
 };
 
-export type ImageUpdateManyWithoutProductAdditionalImagesNestedInput = {
+export type ImageUpdateManyWithoutProductNestedInput = {
   connect?: InputMaybe<Array<ImageWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ImageCreateOrConnectWithoutProductAdditionalImagesInput>>;
-  create?: InputMaybe<Array<ImageCreateWithoutProductAdditionalImagesInput>>;
-  createMany?: InputMaybe<ImageCreateManyProductAdditionalImagesInputEnvelope>;
+  connectOrCreate?: InputMaybe<Array<ImageCreateOrConnectWithoutProductInput>>;
+  create?: InputMaybe<Array<ImageCreateWithoutProductInput>>;
+  createMany?: InputMaybe<ImageCreateManyProductInputEnvelope>;
   delete?: InputMaybe<Array<ImageWhereUniqueInput>>;
   deleteMany?: InputMaybe<Array<ImageScalarWhereInput>>;
   disconnect?: InputMaybe<Array<ImageWhereUniqueInput>>;
   set?: InputMaybe<Array<ImageWhereUniqueInput>>;
-  update?: InputMaybe<Array<ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput>>;
-  updateMany?: InputMaybe<Array<ImageUpdateManyWithWhereWithoutProductAdditionalImagesInput>>;
-  upsert?: InputMaybe<Array<ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput>>;
+  update?: InputMaybe<Array<ImageUpdateWithWhereUniqueWithoutProductInput>>;
+  updateMany?: InputMaybe<Array<ImageUpdateManyWithWhereWithoutProductInput>>;
+  upsert?: InputMaybe<Array<ImageUpsertWithWhereUniqueWithoutProductInput>>;
 };
 
 export type ImageUpdateManyWithoutRgbBackgroundNestedInput = {
@@ -309,16 +286,8 @@ export type ImageUpdateOneRequiredWithoutHomeBlockNestedInput = {
   upsert?: InputMaybe<ImageUpsertWithoutHomeBlockInput>;
 };
 
-export type ImageUpdateOneRequiredWithoutProductCoverImageNestedInput = {
-  connect?: InputMaybe<ImageWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ImageCreateOrConnectWithoutProductCoverImageInput>;
-  create?: InputMaybe<ImageCreateWithoutProductCoverImageInput>;
-  update?: InputMaybe<ImageUpdateWithoutProductCoverImageInput>;
-  upsert?: InputMaybe<ImageUpsertWithoutProductCoverImageInput>;
-};
-
-export type ImageUpdateWithWhereUniqueWithoutProductAdditionalImagesInput = {
-  data: ImageUpdateWithoutProductAdditionalImagesInput;
+export type ImageUpdateWithWhereUniqueWithoutProductInput = {
+  data: ImageUpdateWithoutProductInput;
   where: ImageWhereUniqueInput;
 };
 
@@ -328,25 +297,14 @@ export type ImageUpdateWithWhereUniqueWithoutRgbBackgroundInput = {
 };
 
 export type ImageUpdateWithoutHomeBlockInput = {
-  ProductAdditionalImages?: InputMaybe<ProductUpdateOneWithoutAdditionalImagesNestedInput>;
-  ProductCoverImage?: InputMaybe<ProductUpdateOneWithoutCoverImageNestedInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath?: InputMaybe<Scalars['String']>;
+  product?: InputMaybe<ProductUpdateOneWithoutImagesNestedInput>;
   rgbBackground?: InputMaybe<RgbColorUpdateOneRequiredWithoutImageNestedInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ImageUpdateWithoutProductAdditionalImagesInput = {
-  ProductCoverImage?: InputMaybe<ProductUpdateOneWithoutCoverImageNestedInput>;
-  homeBlock?: InputMaybe<HomeBlockUpdateOneWithoutImageNestedInput>;
-  id?: InputMaybe<Scalars['String']>;
-  imagePath?: InputMaybe<Scalars['String']>;
-  rgbBackground?: InputMaybe<RgbColorUpdateOneRequiredWithoutImageNestedInput>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type ImageUpdateWithoutProductCoverImageInput = {
-  ProductAdditionalImages?: InputMaybe<ProductUpdateOneWithoutAdditionalImagesNestedInput>;
+export type ImageUpdateWithoutProductInput = {
   homeBlock?: InputMaybe<HomeBlockUpdateOneWithoutImageNestedInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath?: InputMaybe<Scalars['String']>;
@@ -355,17 +313,16 @@ export type ImageUpdateWithoutProductCoverImageInput = {
 };
 
 export type ImageUpdateWithoutRgbBackgroundInput = {
-  ProductAdditionalImages?: InputMaybe<ProductUpdateOneWithoutAdditionalImagesNestedInput>;
-  ProductCoverImage?: InputMaybe<ProductUpdateOneWithoutCoverImageNestedInput>;
   homeBlock?: InputMaybe<HomeBlockUpdateOneWithoutImageNestedInput>;
   id?: InputMaybe<Scalars['String']>;
   imagePath?: InputMaybe<Scalars['String']>;
+  product?: InputMaybe<ProductUpdateOneWithoutImagesNestedInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ImageUpsertWithWhereUniqueWithoutProductAdditionalImagesInput = {
-  create: ImageCreateWithoutProductAdditionalImagesInput;
-  update: ImageUpdateWithoutProductAdditionalImagesInput;
+export type ImageUpsertWithWhereUniqueWithoutProductInput = {
+  create: ImageCreateWithoutProductInput;
+  update: ImageUpdateWithoutProductInput;
   where: ImageWhereUniqueInput;
 };
 
@@ -378,11 +335,6 @@ export type ImageUpsertWithWhereUniqueWithoutRgbBackgroundInput = {
 export type ImageUpsertWithoutHomeBlockInput = {
   create: ImageCreateWithoutHomeBlockInput;
   update: ImageUpdateWithoutHomeBlockInput;
-};
-
-export type ImageUpsertWithoutProductCoverImageInput = {
-  create: ImageCreateWithoutProductCoverImageInput;
-  update: ImageUpdateWithoutProductCoverImageInput;
 };
 
 export type ImageWhereUniqueInput = {
@@ -464,10 +416,7 @@ export type MutationUpdateUserArgs = {
 export type Product = {
   __typename?: 'Product';
   _count: ProductCount;
-  additionalImages?: Maybe<Array<Image>>;
   availableColors?: Maybe<Array<RgbColor>>;
-  coverImage: Image;
-  coverImageId: Scalars['String'];
   /**
    * @Validator.@IsInt()
    * @Validator.@Min(1)
@@ -475,6 +424,7 @@ export type Product = {
    */
   discountPrice?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
+  images?: Maybe<Array<Image>>;
   name: Scalars['String'];
   /**
    * @Validator.@IsInt()
@@ -492,14 +442,13 @@ export type ProductAvgAggregate = {
 
 export type ProductCount = {
   __typename?: 'ProductCount';
-  additionalImages: Scalars['Int'];
   availableColors: Scalars['Int'];
+  images: Scalars['Int'];
 };
 
 export type ProductCountAggregate = {
   __typename?: 'ProductCountAggregate';
   _all: Scalars['Int'];
-  coverImageId: Scalars['Int'];
   discountPrice: Scalars['Int'];
   id: Scalars['Int'];
   name: Scalars['Int'];
@@ -507,19 +456,12 @@ export type ProductCountAggregate = {
 };
 
 export type ProductCreateInput = {
-  additionalImages?: InputMaybe<ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
   availableColors?: InputMaybe<RgbColorCreateNestedManyWithoutProductInput>;
-  coverImage: ImageCreateNestedOneWithoutProductCoverImageInput;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageCreateNestedManyWithoutProductInput>;
   name: Scalars['String'];
   price: Scalars['Int'];
-};
-
-export type ProductCreateNestedOneWithoutAdditionalImagesInput = {
-  connect?: InputMaybe<ProductWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutAdditionalImagesInput>;
-  create?: InputMaybe<ProductCreateWithoutAdditionalImagesInput>;
 };
 
 export type ProductCreateNestedOneWithoutAvailableColorsInput = {
@@ -528,15 +470,10 @@ export type ProductCreateNestedOneWithoutAvailableColorsInput = {
   create?: InputMaybe<ProductCreateWithoutAvailableColorsInput>;
 };
 
-export type ProductCreateNestedOneWithoutCoverImageInput = {
+export type ProductCreateNestedOneWithoutImagesInput = {
   connect?: InputMaybe<ProductWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutCoverImageInput>;
-  create?: InputMaybe<ProductCreateWithoutCoverImageInput>;
-};
-
-export type ProductCreateOrConnectWithoutAdditionalImagesInput = {
-  create: ProductCreateWithoutAdditionalImagesInput;
-  where: ProductWhereUniqueInput;
+  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutImagesInput>;
+  create?: InputMaybe<ProductCreateWithoutImagesInput>;
 };
 
 export type ProductCreateOrConnectWithoutAvailableColorsInput = {
@@ -544,31 +481,20 @@ export type ProductCreateOrConnectWithoutAvailableColorsInput = {
   where: ProductWhereUniqueInput;
 };
 
-export type ProductCreateOrConnectWithoutCoverImageInput = {
-  create: ProductCreateWithoutCoverImageInput;
+export type ProductCreateOrConnectWithoutImagesInput = {
+  create: ProductCreateWithoutImagesInput;
   where: ProductWhereUniqueInput;
 };
 
-export type ProductCreateWithoutAdditionalImagesInput = {
-  availableColors?: InputMaybe<RgbColorCreateNestedManyWithoutProductInput>;
-  coverImage: ImageCreateNestedOneWithoutProductCoverImageInput;
-  discountPrice?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-  price: Scalars['Int'];
-};
-
 export type ProductCreateWithoutAvailableColorsInput = {
-  additionalImages?: InputMaybe<ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
-  coverImage: ImageCreateNestedOneWithoutProductCoverImageInput;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageCreateNestedManyWithoutProductInput>;
   name: Scalars['String'];
   price: Scalars['Int'];
 };
 
-export type ProductCreateWithoutCoverImageInput = {
-  additionalImages?: InputMaybe<ImageCreateNestedManyWithoutProductAdditionalImagesInput>;
+export type ProductCreateWithoutImagesInput = {
   availableColors?: InputMaybe<RgbColorCreateNestedManyWithoutProductInput>;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
@@ -578,7 +504,6 @@ export type ProductCreateWithoutCoverImageInput = {
 
 export type ProductMaxAggregate = {
   __typename?: 'ProductMaxAggregate';
-  coverImageId?: Maybe<Scalars['String']>;
   discountPrice?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -587,7 +512,6 @@ export type ProductMaxAggregate = {
 
 export type ProductMinAggregate = {
   __typename?: 'ProductMinAggregate';
-  coverImageId?: Maybe<Scalars['String']>;
   discountPrice?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -601,23 +525,12 @@ export type ProductSumAggregate = {
 };
 
 export type ProductUpdateInput = {
-  additionalImages?: InputMaybe<ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
   availableColors?: InputMaybe<RgbColorUpdateManyWithoutProductNestedInput>;
-  coverImage?: InputMaybe<ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageUpdateManyWithoutProductNestedInput>;
   name?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<Scalars['Int']>;
-};
-
-export type ProductUpdateOneWithoutAdditionalImagesNestedInput = {
-  connect?: InputMaybe<ProductWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutAdditionalImagesInput>;
-  create?: InputMaybe<ProductCreateWithoutAdditionalImagesInput>;
-  delete?: InputMaybe<Scalars['Boolean']>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  update?: InputMaybe<ProductUpdateWithoutAdditionalImagesInput>;
-  upsert?: InputMaybe<ProductUpsertWithoutAdditionalImagesInput>;
 };
 
 export type ProductUpdateOneWithoutAvailableColorsNestedInput = {
@@ -630,46 +543,30 @@ export type ProductUpdateOneWithoutAvailableColorsNestedInput = {
   upsert?: InputMaybe<ProductUpsertWithoutAvailableColorsInput>;
 };
 
-export type ProductUpdateOneWithoutCoverImageNestedInput = {
+export type ProductUpdateOneWithoutImagesNestedInput = {
   connect?: InputMaybe<ProductWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutCoverImageInput>;
-  create?: InputMaybe<ProductCreateWithoutCoverImageInput>;
+  connectOrCreate?: InputMaybe<ProductCreateOrConnectWithoutImagesInput>;
+  create?: InputMaybe<ProductCreateWithoutImagesInput>;
   delete?: InputMaybe<Scalars['Boolean']>;
   disconnect?: InputMaybe<Scalars['Boolean']>;
-  update?: InputMaybe<ProductUpdateWithoutCoverImageInput>;
-  upsert?: InputMaybe<ProductUpsertWithoutCoverImageInput>;
-};
-
-export type ProductUpdateWithoutAdditionalImagesInput = {
-  availableColors?: InputMaybe<RgbColorUpdateManyWithoutProductNestedInput>;
-  coverImage?: InputMaybe<ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
-  discountPrice?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  price?: InputMaybe<Scalars['Int']>;
+  update?: InputMaybe<ProductUpdateWithoutImagesInput>;
+  upsert?: InputMaybe<ProductUpsertWithoutImagesInput>;
 };
 
 export type ProductUpdateWithoutAvailableColorsInput = {
-  additionalImages?: InputMaybe<ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
-  coverImage?: InputMaybe<ImageUpdateOneRequiredWithoutProductCoverImageNestedInput>;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageUpdateManyWithoutProductNestedInput>;
   name?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<Scalars['Int']>;
 };
 
-export type ProductUpdateWithoutCoverImageInput = {
-  additionalImages?: InputMaybe<ImageUpdateManyWithoutProductAdditionalImagesNestedInput>;
+export type ProductUpdateWithoutImagesInput = {
   availableColors?: InputMaybe<RgbColorUpdateManyWithoutProductNestedInput>;
   discountPrice?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<Scalars['Int']>;
-};
-
-export type ProductUpsertWithoutAdditionalImagesInput = {
-  create: ProductCreateWithoutAdditionalImagesInput;
-  update: ProductUpdateWithoutAdditionalImagesInput;
 };
 
 export type ProductUpsertWithoutAvailableColorsInput = {
@@ -677,13 +574,12 @@ export type ProductUpsertWithoutAvailableColorsInput = {
   update: ProductUpdateWithoutAvailableColorsInput;
 };
 
-export type ProductUpsertWithoutCoverImageInput = {
-  create: ProductCreateWithoutCoverImageInput;
-  update: ProductUpdateWithoutCoverImageInput;
+export type ProductUpsertWithoutImagesInput = {
+  create: ProductCreateWithoutImagesInput;
+  update: ProductUpdateWithoutImagesInput;
 };
 
 export type ProductWhereUniqueInput = {
-  coverImageId?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
@@ -720,6 +616,7 @@ export enum QueryMode {
 
 export type RgbColor = {
   __typename?: 'RgbColor';
+  Image?: Maybe<Array<Image>>;
   _count: RgbColorCount;
   b: Scalars['Int'];
   g: Scalars['Int'];
@@ -736,7 +633,7 @@ export type RgbColorAvgAggregate = {
 
 export type RgbColorCount = {
   __typename?: 'RgbColorCount';
-  image: Scalars['Int'];
+  Image: Scalars['Int'];
 };
 
 export type RgbColorCountAggregate = {
@@ -794,11 +691,11 @@ export type RgbColorCreateWithoutImageInput = {
 };
 
 export type RgbColorCreateWithoutProductInput = {
+  Image?: InputMaybe<ImageCreateNestedManyWithoutRgbBackgroundInput>;
   a?: InputMaybe<Scalars['Float']>;
   b: Scalars['Int'];
   g: Scalars['Int'];
   id?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<ImageCreateNestedManyWithoutRgbBackgroundInput>;
   r: Scalars['Int'];
 };
 
@@ -887,11 +784,11 @@ export type RgbColorUpdateWithoutImageInput = {
 };
 
 export type RgbColorUpdateWithoutProductInput = {
+  Image?: InputMaybe<ImageUpdateManyWithoutRgbBackgroundNestedInput>;
   a?: InputMaybe<Scalars['Float']>;
   b?: InputMaybe<Scalars['Int']>;
   g?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<ImageUpdateManyWithoutRgbBackgroundNestedInput>;
   r?: InputMaybe<Scalars['Int']>;
 };
 
