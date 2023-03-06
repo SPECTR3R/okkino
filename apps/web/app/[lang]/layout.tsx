@@ -30,31 +30,33 @@ export default async function RootLayout({
   return (
     <html lang={params.lang} className={lato.className}>
       <body>
-        <div className="mr-6 ml-6 max-w-screen-2xl md:ml-14 md:mr-14">
-          <nav className="flex h-20 items-center justify-between md:h-28 lg:h-36">
-            <Image
-              src={'/logo.svg'}
-              width={85}
-              height={15}
-              alt={'logo'}
-              className="md:h-5 md:w-28"
-            />
+        <div className="flex flex-col items-center">
+          <div className="w-full max-w-screen-2xl  pr-6 pl-6 md:pl-14 md:pr-14">
+            <nav className="flex h-20 items-center justify-between md:h-28 lg:h-36">
+              <Image
+                src={'/logo.svg'}
+                width={85}
+                height={15}
+                alt={'logo'}
+                className="md:h-5 md:w-28"
+              />
 
-            <div className="flex items-center gap-10">
-              <Link href={'/menu'} className="text-xs uppercase text-black">
-                {navBar.menu}
-              </Link>
-              <Link href={'/cart'} className="text-xs uppercase text-black">
-                {navBar.cart}
-              </Link>
+              <div className="flex items-center gap-10">
+                <Link href={'/menu'} className="text-xs uppercase text-black">
+                  {navBar.menu}
+                </Link>
+                <Link href={'/cart'} className="text-xs uppercase text-black">
+                  {navBar.cart}
+                </Link>
 
-              <LocaleSwitcher />
-            </div>
-          </nav>
+                <LocaleSwitcher />
+              </div>
+            </nav>
 
-          {children}
+            {children}
 
-          <footer className="h-20 md:h-28 lg:h-36" />
+            <footer className="h-20 md:h-28 lg:h-36" />
+          </div>
         </div>
       </body>
     </html>
