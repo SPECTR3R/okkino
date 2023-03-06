@@ -25,7 +25,7 @@
     "verify": "nx workspace-lint && nx format:write && nx format:check && nx affected --target=lint --fix --parallel=3 && npx nx affected --target=test --parallel=3 && nx affected --target=build --parallel=3 --exclude=web",
     "----DEPLOY SECTION----": "-------------------------",
     "cd:api": "npx prisma db push --accept-data-loss && npx nx build api --prod && npx ts-node --project tools/tsconfig.tools.json tools/environment/validate-api-env.ts && npx ts-node --project tools/tsconfig.tools.json tools/database/seed.dev.ts",
-    "cd:web": "npx nx build web --prod && npx ts-node --project tools/tsconfig.tools.json tools/environment/validate-web-env.ts"
+    "cd:web": "npx nx build web && npx ts-node --project tools/tsconfig.tools.json tools/environment/validate-web-env.ts"
   },
   "private": true,
   "dependencies": {
