@@ -2,11 +2,13 @@ import { PrismaClient } from '@prisma/client'
 import {
   COLORS,
   HOME_BLOCK_DATA,
-  HOME_BLOCK_IMAGES, HOME_BLOCKS_COLORS_DATA,
+  HOME_BLOCK_IMAGES,
+  HOME_BLOCKS_COLORS_DATA,
   PRODUCT_COVER_IMAGES,
-  PRODUCT_DATA, PRODUCTS,
+  PRODUCT_DATA,
+  PRODUCTS,
   USERS_SEED_DATA
-} from "./seed-data";
+} from './seed-data'
 const prisma = new PrismaClient()
 
 async function main() {
@@ -61,7 +63,7 @@ async function main() {
   )
 
   for (const product of PRODUCTS) {
-    for(const image of PRODUCT_COVER_IMAGES){
+    for (const image of PRODUCT_COVER_IMAGES) {
       await prisma.image.upsert({
         where: { id: product + image.id },
         create: {
@@ -69,34 +71,32 @@ async function main() {
           id: product + image.id,
           product: {
             connect: { id: product }
-          },
+          }
         },
         update: {
           ...image,
           id: undefined,
           product: {
             connect: { id: product }
-          },
+          }
         }
       })
     }
-
   }
 
   for (const product of PRODUCTS) {
     await prisma.rgbColor.upsert({
       where: { id: product + 1 },
-      create: {...COLORS[0].color, productId: product, id: product + 1},
-      update: {...COLORS[0].color, productId: product, id: product + 1}
+      create: { ...COLORS[0].color, productId: product, id: product + 1 },
+      update: { ...COLORS[0].color, productId: product, id: product + 1 }
     })
 
     await prisma.rgbColor.upsert({
       where: { id: product + 2 },
-      create: {...COLORS[1].color, productId: product, id: product + 2},
-      update: {...COLORS[1].color, productId: product, id: product + 2}
+      create: { ...COLORS[1].color, productId: product, id: product + 2 },
+      update: { ...COLORS[1].color, productId: product, id: product + 2 }
     })
   }
-
 }
 
 main()

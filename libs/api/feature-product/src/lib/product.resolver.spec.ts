@@ -1,13 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { ProductResolver } from './product.resolver'
 import { ProductService } from './product.service'
+import { PrismaService } from '@okkino/api/data-access-db'
 
 describe('ProductResolver', () => {
   let resolver: ProductResolver
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ProductResolver, ProductService]
+      providers: [ProductResolver, ProductService, PrismaService]
     }).compile()
 
     resolver = module.get<ProductResolver>(ProductResolver)
